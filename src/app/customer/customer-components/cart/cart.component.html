@@ -1,0 +1,89 @@
+<div class="cart-container" *ngIf="order">
+  <mat-card class="cart-wrapper">
+    <mat-card-header>
+      <mat-card-title>Shopping Cart</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="order.cartItems && order.cartItems.length > 0; else emptyCart">
+        <ng-container>
+          <mat-card class="cart-item" *ngFor="let item of order.cartItems">
+            <div class="item-content">
+              <div class="item-image">
+                <img [src]="'http://localhost:8080' + item.imgUrl" alt="{{ item.productName }}" />
+              </div>
+
+              <div class="item-details">
+                <div class="item-name" [ngClass]="{'highlight':item.highlighted}">{{ item.productName }}</div>
+                <p class="price">Price: ₹{{ item.price }}</p>
+
+                <div class="middle">
+                  <div class="quantity-section">
+                 <button mat-icon-button (click)="decreaseQuantity(item.productId)">
+                      <mat-icon>remove_circle_outline</mat-icon>
+                    </button>
+
+                    <span class="quantity">{{ item.quantity }}</span>
+                    <button mat-icon-button (click)="increaseQuantity(item.productId)">
+                      <mat-icon>add_circle_outline</mat-icon>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="remove-button">
+                  <button mat-button color="warn" (click)="removeItem(item.productId)">Remove</button>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+
+          <mat-divider></mat-divider>
+
+          <!-- Cart Summary -->
+          <div class="cart-summary">
+            <h3>Cart Summary</h3>
+            <p><strong>Subtotal:</strong> ₹{{ order.amount }}</p>
+            <p><strong>Discount:</strong> ₹{{ order.discount }}</p>
+            <p><strong>Total:</strong> ₹{{ order.totalAmount }}</p>
+            <div class="apply-coupon-name" *ngIf="order.couponName !=null">
+              Coupon Applied: {{order.couponName}}
+            </div>
+
+            <button mat-raised-button color="primary" class="checkout-btn" (click)="placeOrder()">
+              Proceed to Checkout
+            </button>
+
+            <!-- Coupon Apply Form -->
+            <div class="apply-coupon" *ngIf="order.couponName == null">
+              <form [formGroup]="couponForm" (ngSubmit)="applyCoupon()">
+                <mat-form-field appearance="outline" class="coupon-field">
+                  <mat-label>Enter Coupon Code</mat-label>
+                  <input matInput formControlName="code" placeholder="e.g., SAVE20" />
+                  <mat-error *ngIf="couponForm.get('code')?.hasError('required')">
+                    Coupon code is required
+                  </mat-error>
+                </mat-form-field>
+
+                <button mat-flat-button color="accent" type="submit" [disabled]="couponForm.invalid">
+                  Apply Coupon
+                </button>
+              </form>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Define emptyCart template outside -->
+  <ng-template #emptyCart>
+    <mat-card>
+      <mat-card-content>
+        <div class="empty-msg">
+          <mat-icon class="icon">remove_shopping_cart</mat-icon>
+          <span>Your cart is empty.</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</div>

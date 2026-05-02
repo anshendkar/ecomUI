@@ -1,0 +1,65 @@
+<div class="analytics-container">
+  <div class="header">
+    <h2>Analytics</h2>
+  </div>
+
+  <!-- Loading / Error states -->
+  <div *ngIf="loading" class="state">Loading analytics…</div>
+  <div *ngIf="!loading && error" class="state error">{{ error }}</div>
+
+  <!-- KPI Cards -->
+  <div *ngIf="!loading && data" class="kpi-grid">
+    <mat-card class="kpi-card placed">
+      <div class="kpi-icon">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </div>
+      <div class="kpi-content">
+        <div class="kpi-title">Placed</div>
+        <div class="kpi-value">{{ data.placed }}</div>
+      </div>
+    </mat-card>
+
+    <mat-card class="kpi-card shipped">
+      <div class="kpi-icon">
+        <mat-icon>local_shipping</mat-icon>
+      </div>
+      <div class="kpi-content">
+        <div class="kpi-title">Shipped</div>
+        <div class="kpi-value">{{ data.shipped }}</div>
+      </div>
+    </mat-card>
+
+    <mat-card class="kpi-card delivered">
+      <div class="kpi-icon">
+        <mat-icon>check_circle</mat-icon>
+      </div>
+      <div class="kpi-content">
+        <div class="kpi-title">Delivered</div>
+        <div class="kpi-value">{{ data.delivered }}</div>
+      </div>
+    </mat-card>
+  </div>
+
+  <!-- Secondary stats (other response fields) -->
+  <div *ngIf="!loading && data" class="detail-grid">
+    <mat-card class="detail-card">
+      <div class="detail-title">Current Month Orders</div>
+      <div class="detail-value">{{ data.currentMonthOrders }}</div>
+    </mat-card>
+
+    <mat-card class="detail-card">
+      <div class="detail-title">Previous Month Orders</div>
+      <div class="detail-value">{{ data.previousMonthOrders }}</div>
+    </mat-card>
+
+    <mat-card class="detail-card">
+      <div class="detail-title">Current Month Earnings</div>
+      <div class="detail-value">{{ inr(data.currentMonthEarnings) }}</div>
+    </mat-card>
+
+    <mat-card class="detail-card">
+      <div class="detail-title">Previous Month Earnings</div>
+      <div class="detail-value">{{ inr(data.previousmonthEarnings) }}</div>
+    </mat-card>
+  </div>
+</div>

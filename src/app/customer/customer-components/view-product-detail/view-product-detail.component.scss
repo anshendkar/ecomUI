@@ -1,0 +1,149 @@
+.product-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 900px;   /* 👈 keeps content centered */
+  margin: 0 auto;     /* 👈 centers container horizontally */
+
+  .product-info,
+  .reviews,
+  .faqs {
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: #fff;
+  }
+
+  .product-info {
+    .product-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .product-image {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px;
+        flex-shrink: 0;
+      }
+
+      .product-meta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+
+        h2 {
+          margin: 0;
+          font-size: 1.8rem;
+          font-weight: 600;
+        }
+
+        .price {
+          font-size: 1.3rem;
+          font-weight: bold;
+          color: #2e7d32;
+        }
+
+       .category-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.heart-icon {
+  cursor: pointer;
+}
+
+        .description {
+          color: #555;
+          line-height: 1.4;
+        }
+      }
+    }
+.product-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+
+  button {
+    flex: 1; // make both buttons same width
+  }
+}
+  }
+
+  .reviews {
+    h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .review-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+
+      .review-item {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .review-header {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          .review-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          .review-user {
+            h4 {
+              margin: 0;
+              font-weight: 600;
+            }
+            .rating {
+              font-size: 0.95rem;
+              color: #ff9800;
+            }
+          }
+        }
+
+        .review-text {
+          font-size: 0.95rem;
+          color: #444;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .faqs {
+    h3 {
+      margin-bottom: 0.75rem;
+    }
+  }
+}
+
+/* 📱 Responsive for tablets & mobile */
+@media (max-width: 768px) {
+  .product-detail-container {
+    padding: 0.5rem;
+    max-width: 100%; /* let it shrink on smaller screens */
+  }
+
+  .product-info .product-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .product-meta {
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<form [formGroup]="searchPrductForm" class="search-form" (submit)="searchProducts()">
+  <mat-form-field appearance="outline" class="search-input">
+    <mat-label>Enter Keyword to search</mat-label>
+    <input matInput formControlName="title" />
+    <button mat-button matSuffix color="primary" [disabled]="searchPrductForm.invalid">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+
+
+<div class="product-dashboard">
+
+  <div class="product-grid">
+<mat-card class="product-card" *ngFor="let product of products">
+      <div class="image-container" (click)="goToProduct(product.id)">
+        <img *ngIf="product.imgUrl" [src]="'http://localhost:8080' + product.imgUrl" [alt]="product.name" />
+      </div>
+
+      <div class="details">
+       <h3>{{ product.name }}</h3>
+        <p class="price">₹{{ product.price }}</p>
+        <p class="description">{{ product.description }}</p>
+
+        <mat-divider></mat-divider>
+
+        <div class="meta">
+          <div><strong>Price:</strong> ₹{{ product.price }}</div>
+          <div><strong>Category:</strong> {{ product.categoryName }}</div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="actions">
+           <button mat-raised-button color="primary" class="update-button" (click)="addToCart(product.id)">Add to Cart</button>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="pagination-controls">
+    <button mat-button (click)="prevPage()" [disabled]="page === 0">Previous</button>
+    <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+    <button mat-button (click)="nextPage()" [disabled]="page + 1 >= totalPages">Next</button>
+  </div>
+
+</div>

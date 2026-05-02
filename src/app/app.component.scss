@@ -1,0 +1,74 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .menu-btn {
+      display: block;
+      margin-left: auto;
+    }
+
+    button[mat-button] {
+      display: none;
+    }
+  }
+}
+
+.mobile-sidenav {
+  width: 250px;
+}
+
+button.active {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mobile-sidenav mat-toolbar {
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+/* Hover effect for top nav buttons (desktop) */
+.mat-toolbar button[mat-button] {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.mat-toolbar button[mat-button]:hover {
+  border-bottom: 2px solid white;
+  color: #fff;
+}
+
+/* Hover effect for sidenav links (mobile) */
+.mobile-sidenav a.mat-list-item {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mobile-sidenav a.mat-list-item:hover {
+  border-left: 4px solid #3f51b5;
+  background-color: rgba(63, 81, 181, 0.1);
+  color: #3f51b5;
+}

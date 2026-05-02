@@ -1,0 +1,42 @@
+<div class="container">
+    <<mat-card class="coupon-card">
+  <mat-card-header class="space">
+    <mat-card-title>Add Coupon</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="couponForm" (ngSubmit)="addCoupon()">
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name" />
+          <mat-error *ngIf="couponForm.get('name')?.hasError('required')">Name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Code</mat-label>
+          <input matInput type="text" formControlName="code" />
+          <mat-error *ngIf="couponForm.get('code')?.hasError('required')">Code is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Discount (%)</mat-label>
+          <input matInput type="number" formControlName="discount" />
+          <mat-error *ngIf="couponForm.get('discount')?.hasError('required')">Discount is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Expiration Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="expirationDate" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="couponForm.get('expirationDate')?.hasError('required')">Date is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="couponForm.invalid">Add Coupon</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+</div>

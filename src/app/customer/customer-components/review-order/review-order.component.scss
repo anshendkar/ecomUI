@@ -1,0 +1,50 @@
+.review-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+
+  mat-card {
+    width: 100%;
+    max-width: 600px;
+    padding: 1.5rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .file-section {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .image-preview {
+    margin: 1rem 0;
+    img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  }
+
+  .submit-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .review-container {
+    mat-card {
+      padding: 1rem;
+    }
+    .submit-btn {
+      justify-content: center;
+    }
+  }
+}

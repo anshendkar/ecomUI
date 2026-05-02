@@ -1,0 +1,92 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <!-- Side Drawer (Mobile Only) -->
+  <mat-sidenav #drawer class="mobile-sidenav" mode="over" [(opened)]="mobileMenuOpen">
+    <mat-toolbar color="primary">
+      <span>Menu</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="closeMobileMenu()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <mat-nav-list (click)="closeMobileMenu()">
+      <!-- Public Menu -->
+      <ng-container *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn">
+        <a mat-list-item routerLink="/track-order">Track Order</a>
+        <a mat-list-item routerLink="/register">Register</a>
+        <a mat-list-item routerLink="/login">Login</a>
+      </ng-container>
+
+      <!-- Customer Menu -->
+      <ng-container *ngIf="isCustomerLoggedIn">
+        <a mat-list-item routerLink="/customer/dashboard">Dashboard</a>
+        <a mat-list-item routerLink="/customer/cart">Cart</a>
+        <a mat-list-item routerLink="/customer/my-orders">Orders</a>
+        <a mat-list-item routerLink="/customer/wishlist">Wishlist</a>
+        <a mat-list-item routerLink="/customer/profile">Profile</a>
+        <a mat-list-item (click)="logout()">Logout</a>
+      </ng-container>
+
+      <!-- Admin Menu -->
+      <ng-container *ngIf="isAdminLoggedIn">
+        <a mat-list-item routerLink="/admin/dashboard">Dashboard</a>
+        <a mat-list-item routerLink="/admin/analytics">Analytics</a>
+        <a mat-list-item routerLink="/admin/category">Category</a>
+        <a mat-list-item routerLink="/admin/product">Product</a>
+        <a mat-list-item routerLink="/admin/orders">Orders</a>
+        <a mat-list-item routerLink="/admin/post-coupon">Post Coupon</a>
+        <a mat-list-item routerLink="/admin/coupons">Coupons</a>
+        <a mat-list-item (click)="logout()">Logout</a>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Top Toolbar -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="navbar">
+      <span class="navbar-brand">EcommerceApp</span>
+
+      <!-- Hamburger (mobile only) -->
+      <button class="menu-btn" mat-icon-button (click)="toggleMobileMenu()" *ngIf="isMobile">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- Desktop Menu -->
+      <span class="spacer"></span>
+      <ng-container *ngIf="!isMobile">
+        <!-- Public Links -->
+        <ng-container *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn">
+          <button mat-button routerLink="/track-order" routerLinkActive="active">Track Order</button>
+          <button mat-button routerLink="/register" routerLinkActive="active">Register</button>
+          <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
+        </ng-container>
+
+        <!-- Customer Links -->
+        <ng-container *ngIf="isCustomerLoggedIn">
+          <button mat-button routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</button>
+          <button mat-button routerLink="/customer/cart" routerLinkActive="active">Cart</button>
+          <button mat-button routerLink="/customer/my-orders" routerLinkActive="active">Orders</button>
+          <button mat-button routerLink="/customer/wishlist" routerLinkActive="active">Wishlist</button>
+          <button mat-button routerLink="/customer/profile" routerLinkActive="active">Profile</button>
+          <button mat-button (click)="logout()">Logout</button>
+        </ng-container>
+
+        <!-- Admin Links -->
+        <ng-container *ngIf="isAdminLoggedIn">
+          <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
+          <button mat-button routerLink="/admin/analytics" routerLinkActive="active">Analytics</button>
+          <button mat-button routerLink="/admin/category" routerLinkActive="active">Category</button>
+          <button mat-button routerLink="/admin/product" routerLinkActive="active">Product</button>
+          <button mat-button routerLink="/admin/orders" routerLinkActive="active">Orders</button>
+          <button mat-button routerLink="/admin/post-coupon" routerLinkActive="active">Post Coupon</button>
+          <button mat-button routerLink="/admin/coupons" routerLinkActive="active">Coupons</button>
+          <button mat-button (click)="logout()">Logout</button>
+        </ng-container>
+      </ng-container>
+    </mat-toolbar>
+
+    <!-- Main Content -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

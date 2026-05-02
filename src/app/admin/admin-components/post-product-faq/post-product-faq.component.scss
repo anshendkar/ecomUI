@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.faq-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .faq-card {
+    padding: 15px;
+  }
+
+  .button-container {
+    justify-content: center;
+  }
+}

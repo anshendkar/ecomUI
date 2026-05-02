@@ -1,0 +1,34 @@
+<div class="order-container">
+  <h2>Ordered Products</h2>
+
+  <ng-container *ngIf="orderedProductDetailsList.length > 0; else noProducts">
+    <div class="product-list">
+      <mat-card *ngFor="let product of orderedProductDetailsList" class="product-card">
+        <div class="card-content">
+          <img [src]="'http://localhost:8080' + product.imgUrl"
+               alt="{{ product.name }}" class="product-image" />
+
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <p>Price: ₹{{ product.price }}</p>
+            <p>Quantity: {{ product.quantity }}</p>
+            <p>Total: ₹{{ product.price * product.quantity }}</p>
+
+            <button mat-raised-button color="primary"
+                    [routerLink]="['/customer/review', product.id]">
+              Give Review
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="order-total">
+      <h3>Total Order Amount: ₹{{ orderAmount }}</h3>
+    </div>
+  </ng-container>
+
+  <ng-template #noProducts>
+    <p class="no-products-msg">No products found for this order.</p>
+  </ng-template>
+</div>

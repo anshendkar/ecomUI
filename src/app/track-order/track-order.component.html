@@ -1,0 +1,34 @@
+<div class="track-order-container">
+  <mat-card>
+    <mat-card-title>Track Your Order</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="searchOrderForm" (ngSubmit)="onSubmit()" class="search-form">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Enter Tracking ID</mat-label>
+          <input matInput formControlName="trackingId" placeholder="UUID e.g. 123e4567-e89b-12d3-a456-426614174000">
+          <mat-error *ngIf="searchOrderForm.get('trackingId')?.invalid && searchOrderForm.get('trackingId')?.touched">
+            Tracking ID is required
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">Search</button>
+      </form>
+
+      <div *ngIf="order" class="order-details">
+        <h3>Order Details</h3>
+        <div class="detail-row"><strong>Tracking ID:</strong> {{ order.trackingId }}</div>
+        <div class="detail-row"><strong>Description:</strong> {{ order.orderDescription }}</div>
+        <div class="detail-row"><strong>Date:</strong> {{ order.date | date:'medium' }}</div>
+        <div class="detail-row"><strong>Amount:</strong> ₹{{ order.amount }}</div>
+        <div class="detail-row"><strong>Address:</strong> {{ order.address }}</div>
+        <div class="detail-row"><strong>User Name:</strong> {{ order.userName }}</div>
+           <div class="detail-row"><strong>Order Status:</strong> {{ order.orderStatus }}</div>
+      </div>
+
+    <div *ngIf="submitted && order === null" class="no-order">
+        <p>No order found with this Tracking ID.</p>
+      </div>
+    </mat-card-content>
+    
+  </mat-card>
+</div>

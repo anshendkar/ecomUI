@@ -1,0 +1,26 @@
+<div class="wishlist-wrapper" *ngIf="products.length > 0; else emptyWishlist">
+  <h2 class="wishlist-header">My Wishlist ({{ products.length }} items)</h2>
+
+  <div class="wishlist-container">
+    <div class="grid">
+      <mat-card *ngFor="let product of products" class="wishlist-card">
+        <img mat-card-image [src]="'http://localhost:8080' + product.imgUrl" alt="{{ product.productName }}">
+        <mat-card-content>
+          <h3>{{ product.productName }}</h3>
+          <p>{{ product.productDescription }}</p>
+          <p class="price">₹{{ product.price }}</p>
+        </mat-card-content>
+        <mat-card-actions class="card-actions">
+          <button mat-raised-button color="warn"   (click)="removeFromWishlist(product.productId)">Remove</button>
+          <button mat-raised-button color="primary" (click)="moveToCart(product.productId)">Move to Cart</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyWishlist>
+  <div class="empty">
+    <p>Your wishlist is empty!</p>
+  </div>
+</ng-template>

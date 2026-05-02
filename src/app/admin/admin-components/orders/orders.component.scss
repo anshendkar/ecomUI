@@ -1,0 +1,32 @@
+.container {
+  padding: 20px;
+
+  mat-card {
+    padding: 20px;
+
+    mat-card-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .full-width-table {
+      width: 100%;
+      overflow: auto;
+
+      th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+      }
+
+      td,
+      th {
+        padding: 12px;
+        text-align: left;
+      }
+
+      mat-icon {
+        vertical-align: middle;
+      }
+    }
+  }
+}
